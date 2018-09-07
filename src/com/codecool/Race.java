@@ -1,6 +1,23 @@
 package com.codecool;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+
 
 public class Race {
+
+
+
+    interface Vehicle {
+
+        Random rand = new Random();
+        String name;
+        int distanceTraveled;
+        int speed;
+        public void moveForAnHour()
+
+
+    }
 
     public static void main(String[] args) {
 	// write your code here
@@ -9,18 +26,50 @@ public class Race {
         // - calling moveForAnHour() on every vehicle 50 times
         // - setting whether its raining
         printRaceResults() // prints each vehicle's name, distance traveled ant type.
-        boolean isThereABrokenTruck() //
+        boolean isThereABrokenTruck()//
 
-        Weather
- static setRaining() // 30% chance of rain.
+
+        static setRaining() {} // 30% chance of rain.
+
         static boolean isRaining() // is it raining currently.
 
-        Car
-        normalSpeed // the normal speed of the car. Set to a random number in the constructor between 80-110km/h.
-        name // Make a list from the words here: http://www.fantasynamegenerators.com/car-names.php and pick 2 randomly for each instance.
-        distanceTraveled // holds the current distance traveled.
-        moveForAnHour(Race race) // The vehicle travels for an hour. It increases the distance traveled. Call this from the main class only!
-        // If there is a broken down Truck on the track, then limit the max speed of vehicles to 75 km/h.
+        class Car implements Vehicle{
+
+            String[] carNames = {"Chase", "Reflect", "Freedom", "Origin", "Stardust", "Flux",
+                    "Prophecy", "Inception", "Rune", "Formula"};
+
+            private String pickName() {
+                return carNames[rand.nextInt(9)];
+            }
+
+            private String createName() {
+                String firstName = pickName();
+                String lastName = pickName();
+                return String.format("%s %s", firstName, lastName );
+            }
+
+            private int speed;
+
+            private String name;
+
+            private int distanceTraveled;
+
+            public void moveForAnHour() {
+                if (isThereABrokenTruck) {
+                    distanceTraveled += 75;
+                } else {
+                    distanceTraveled += speed;
+                }
+            } // The vehicle travels for an hour. It increases the distance traveled. Call this from the main class only!
+
+            Car() {
+                this.speed = rand.nextInt(30) + 80;
+                this.name = createName();
+            }
+
+
+            //!!!!! If there is a broken down Truck on the track, then limit the max speed of vehicles to 75 km/h.
+        }
 
         Motorcycle // speed is 100km/h. If it rains, travels with 5-50km/h slower (randomly).
         static nameNumber // The number of the instance created. Used for its name.
