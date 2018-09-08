@@ -28,9 +28,9 @@ public class Race {
 
     interface Vehicle {
 
-        String name;
-        int distanceTraveled;
-        int speed;
+        String name = "";
+        int distanceTraveled = 0;
+        int speed = 0;
         void moveForAnHour(Race race);
     }
 
@@ -144,22 +144,36 @@ public class Race {
     private void simulateRace(Race race) {
         for (int i = 0; i < 50; i++) {
             race.setRaining();
-            Iterator carIterator = listOfCars.iterator();
-            while (carIterator.hasNext()) {
-                 carIterator.next()
-
+            for (Car car : listOfCars) {
+                car.moveForAnHour(race);
+            }
+            for (Motorcycle motorcycle : listOfMotorcycles) {
+                motorcycle.moveForAnHour(race);
+            }
+            for (Truck truck : listOfTrucks) {
+                truck.moveForAnHour(race);
             }
         }
     }
 
+    private void printRaceResults (Race race) {
+        for (Car car : listOfCars) {
+            System.out.println(String.format("Name: %s, Distance: %s km", car.name, car.distanceTraveled));
+        }
+        for (Motorcycle motorcycle : listOfMotorcycles) {
+            System.out.println(String.format("Name: %s, Distance: %s km", motorcycle.name, motorcycle.distanceTraveled));
+        }
+        for (Truck truck : listOfTrucks) {
+            System.out.println(String.format("Name: %s, Distance: %s km", truck.name, truck.distanceTraveled));
+        }
+    }
 
     public static void main(String[] args) {
         Race race = new Race();
-
         race.createVehicles();// creates 10 cars, 10 trucks and 10 motorcycles.
-        simulateRace() // simulates the race by
+        race.simulateRace(race);// simulates the race by
         // - calling moveForAnHour() on every vehicle 50 times
         // - setting whether its raining
-        printRaceResults() // prints each vehicle's name, distance traveled and type.
+        race.printRaceResults(race);// prints each vehicle's name, distance traveled and type.
     }
 }
