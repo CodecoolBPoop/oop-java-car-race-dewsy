@@ -6,6 +6,8 @@ import java.util.Random;
 
 public class Race {
 
+    static int nameNumber = 0; // The number of the instance created. Used for its name.
+
 
     interface Vehicle {
 
@@ -13,7 +15,7 @@ public class Race {
         String name;
         int distanceTraveled;
         int speed;
-        public void moveForAnHour();
+        void moveForAnHour();
 
 
     }
@@ -33,8 +35,8 @@ public class Race {
         static void setRaining() {
             int rainOMeter = rand.nextInt(9);
             if (rainOMeter <= 6) {
-               isRaining = false;
-           } else {
+                isRaining = false;
+            } else {
                 isRaining =true;
             }
         }
@@ -55,9 +57,9 @@ public class Race {
 
             public void moveForAnHour() {
                 if (isThereABrokenTruck) {
-                    distanceTraveled += 75;
+                    this.distanceTraveled += 75;
                 } else {
-                    distanceTraveled += speed;
+                    this.distanceTraveled += this.speed;
                 }
             } // The vehicle travels for an hour. It increases the distance traveled. Call this from the main class only!
 
@@ -73,21 +75,59 @@ public class Race {
         class Motorcycle implements Vehicle { // speed is 100km/h. If it rains, travels with 5-50km/h slower (randomly).
 
             int speed = 100;
-            static nameNumber // The number of the instance created. Used for its name.
-                    name // Are called "Motorcycle 1", "Motorcycle 2", "Motorcycle 3",... Unique.
+            public int distanceTraveled;
+            String name; // Are called "Motorcycle 1", "Motorcycle 2", "Motorcycle 3",... Unique.
 
-            distanceTraveled
             public void moveForAnHour() {
+                if (isRaining) {
+                    this.distanceTraveled += this.speed - (rand.nextInt(45) + 5);
+                } else {
+                    this.distanceTraveled += this.speed;
+                }
+            }
+
+            Motorcycle() {
+                     nameNumber += 1;
+                     this.name = String.format("Motorcycle %d", nameNumber);
             }
         }
 
-        Truck // speed: 100km/h. 5% chance of breaking down for 2 hours.
-        // Truck drivers are boring. They call all their trucks a random number between 0 and 1000.
-        breakdownTurnsLeft // holds how long its still broken down.
-        distanceTraveled
-        moveForAnHour(Race race)
+        class Truck implements Vehicle { // speed: 100km/h. 5% chance of breaking down for 2 hours.
+            // Truck drivers are boring. They call all their trucks a random number between 0 and 1000.
+            private int breakdownTurnsLeft; // holds how long its still broken down.
+            public int distanceTraveled;
+            private int speed = 100;
+            public String name;
+            private boolean isItBrokeDown() {
+                if ((rand.nextInt(99) + 1) > 95) {
+                    isThereABrokenTruck = true;
+                    this.breakdownTurnsLeft = 2;
+                    return true;
+                } else if (this.breakdownTurnsLeft > 0) {
+                    this.breakdownTurnsLeft -= 1;
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            public void moveForAnHour() {
+                if (!isItBrokeDown()) {
+                    this.distanceTraveled += speed;
+                }
+            }
+
+            private String nameGenerator() {
+                int name = rand.nextInt(999) +1;
+                return Integer.toString(name);
+            }
+
+            Truck() {
+                this.name = nameGenerator();
+            }
+        }
 
 
- static main(String[]) // The entry point of our program.
     }
+    static main(String[]) // The entry point of our program.
 }
