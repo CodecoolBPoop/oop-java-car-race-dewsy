@@ -1,5 +1,4 @@
 package com.codecool;
-import java.lang.reflect.Modifier;
 import java.util.*;
 
 
@@ -156,7 +155,7 @@ public class Race {
         }
     }
 
-    private void printRaceResults (Race race) {
+    private void printRaceResults () {
         for (Car car : listOfCars) {
             System.out.println(String.format("Name: %s, Distance: %s km", car.name, car.distanceTraveled));
         }
@@ -174,6 +173,6 @@ public class Race {
         race.simulateRace(race);// simulates the race by
         // - calling moveForAnHour() on every vehicle 50 times
         // - setting whether its raining
-        race.printRaceResults(race);// prints each vehicle's name, distance traveled and type.
+        race.printRaceResults();// prints each vehicle's name, distance traveled and type.
     }
 }
