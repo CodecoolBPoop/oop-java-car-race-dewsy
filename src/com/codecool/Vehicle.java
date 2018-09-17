@@ -1,4 +1,4 @@
-package com.codecool.carRace;
+package com.codecool;
 
 import java.util.List;
 import java.util.Random;

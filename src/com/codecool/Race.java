@@ -1,4 +1,4 @@
-package com.codecool.carRace;
+package com.codecool;
 import java.util.*;
 
 
@@ -15,8 +15,7 @@ public class Race {
 
 
     private void setRaining() {
-        int rainOMeter = rand.nextInt(9);
-        isRaining = (rainOMeter > 6);
+        isRaining = (rand.nextInt(10) > 6);
     }
 
     public boolean isRaining() {
@@ -25,6 +24,7 @@ public class Race {
 
     private void simulateRace(Race race) {
         for (int i = 0; i < 50; i++) {
+            setRaining();
             for (Vehicle vehicle : Vehicle.vehicleList) {
                 vehicle.moveForAnHour(race);
             }
@@ -40,6 +40,8 @@ public class Race {
     private void createVehicles() {
         for (int i = 0; i < 10; i++) {
             Vehicle.vehicleList.add(new Car());
+            Vehicle.vehicleList.add(new Truck());
+            Vehicle.vehicleList.add(new Motorcycle());
         }
     }
 

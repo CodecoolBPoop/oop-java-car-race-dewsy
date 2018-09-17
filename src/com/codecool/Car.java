@@ -1,4 +1,4 @@
-package com.codecool.carRace;
+package com.codecool;
 
 public class Car extends Vehicle{
 

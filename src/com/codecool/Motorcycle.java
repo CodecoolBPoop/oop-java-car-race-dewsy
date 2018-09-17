@@ -1,4 +1,4 @@
-package com.codecool.carRace;
+package com.codecool;
 
 class Motorcycle extends Vehicle { // speed is 100km/h. If it rains, travels with 5-50km/h slower (randomly).
 
