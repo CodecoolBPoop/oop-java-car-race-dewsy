@@ -1,4 +1,4 @@
-package com.codecool;
+package com.codecool.carRace;
 
 class Motorcycle extends Vehicle { // speed is 100km/h. If it rains, travels with 5-50km/h slower (randomly).
 
@@ -21,6 +21,11 @@ class Motorcycle extends Vehicle { // speed is 100km/h. If it rains, travels wit
         } else {
             this.distanceTraveled += this.speed;
         }
+    }
+
+    @Override
+    public String toString(){
+        return String.format("Name: %s, Distance: %s km", this.name, this.distanceTraveled);
     }
 
 }

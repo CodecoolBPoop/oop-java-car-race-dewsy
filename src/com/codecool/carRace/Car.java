@@ -1,4 +1,4 @@
-package com.codecool;
+package com.codecool.carRace;
 
 public class Car extends Vehicle{
 
@@ -24,5 +24,9 @@ public class Car extends Vehicle{
     } // The vehicle travels for an hour. It increases the distance traveled. Call this from the main class only!
 
 
+    @Override
+    public String toString(){
+        return String.format("Name: %s, Distance: %s km", this.name, this.distanceTraveled);
+    }
     //!!!!! If there is a broken down Truck on the track, then limit the max speed of vehicles to 75 km/h.
 }

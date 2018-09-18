@@ -1,4 +1,4 @@
-package com.codecool;
+package com.codecool.carRace;
 import java.util.*;
 
 
@@ -7,6 +7,7 @@ public class Race {
     public boolean isThereABrokenTruck(){
         return deadTruck;
     }
+    public List<Vehicle> vehicleList = new ArrayList<>();
 
     private static Random rand = new Random();
     public boolean deadTruck;
@@ -25,23 +26,23 @@ public class Race {
     private void simulateRace(Race race) {
         for (int i = 0; i < 50; i++) {
             setRaining();
-            for (Vehicle vehicle : Vehicle.vehicleList) {
+            for (Vehicle vehicle : vehicleList) {
                 vehicle.moveForAnHour(race);
             }
         }
     }
 
     private void printRaceResults () {
-        for (Vehicle vehicle : Vehicle.vehicleList) {
-            vehicle.toString();
+        for (Vehicle vehicle : vehicleList) {
+            System.out.println(vehicle.toString());
         }
     }
 
     private void createVehicles() {
         for (int i = 0; i < 10; i++) {
-            Vehicle.vehicleList.add(new Car());
-            Vehicle.vehicleList.add(new Truck());
-            Vehicle.vehicleList.add(new Motorcycle());
+            vehicleList.add(new Car());
+            vehicleList.add(new Truck());
+            vehicleList.add(new Motorcycle());
         }
     }
 

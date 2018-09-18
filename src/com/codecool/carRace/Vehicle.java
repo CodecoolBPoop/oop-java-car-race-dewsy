@@ -1,5 +1,6 @@
-package com.codecool;
+package com.codecool.carRace;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -9,11 +10,7 @@ abstract class Vehicle {
     private String name;
     private int distanceTraveled;
     int speed;
-    public static List<Vehicle> vehicleList;
     abstract void moveForAnHour(Race race);
 
-    @Override
-    public String toString(){
-        return String.format("Name: %s, Distance: %s km", this.name, this.distanceTraveled);
-    }
+
 }
